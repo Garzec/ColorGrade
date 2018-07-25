@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Observer : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class Observer : MonoBehaviour
 
     [SerializeField]
     private Ball ball;
+
+    [SerializeField]
+    private GameObject btnDrop;
+
+    [SerializeField]
+    private IngameScore score;
 
     private int currentLevel = 0;
     private Color currentBallColor;
@@ -29,44 +36,43 @@ public class Observer : MonoBehaviour
         colors.Add(60, new Color(255, 255, 255)); // weiß
         colors.Add(70, new Color(51, 102, 153)); // dunkelblau
 
-        StartLevel();
+        StartNextLevel();
     }
 
-    private void StartLevel()
+    private void StartNextLevel()
     {
         currentLevel++;
         Color[] rouletteColors = GetRouletteColors(currentLevel);
         Color ballColor = GetBallColor(rouletteColors);
         currentBallColor = ballColor;
-        ball.ResetBall(ballColor);
+        ball.Reset(ballColor);
         roulette.StartRotating(currentLevel, rouletteColors);
+        btnDrop.SetActive(true);
     }
 
-    private void FinishLevel()
+    public void EnableBallDrop()
     {
+        btnDrop.SetActive(false);
         roulette.StopRotating();
+        ball.Drop();
     }
 
     public void RouletteCollision(Color currentRouletteColor)
     {
         if (currentRouletteColor == currentBallColor)
         {
-            // weiter
-
-            Debug.LogError("noch nicht implementiert");
+            score.ChangeHighscore(currentLevel);
+            StartNextLevel();
         }
         else
         {
-            // verloren
-
-            Debug.LogError("noch nicht implementiert");
+            score.SaveScore();
+            SceneManager.LoadScene("Highscore");
         }
     }
 
     private Color[] GetRouletteColors(int currentLevel)
     {
-        Debug.LogError("Abfrage mal testen");
-
         return colors
             .Where(x => x.Key <= currentLevel)
             .Select(x => x.Value)

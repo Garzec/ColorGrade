@@ -15,12 +15,12 @@ public class Ball : MonoBehaviour
         initialPosition = transform.position;
     }
 
-    public void DropBall()
+    public void Drop()
     {
         ToggleGravity(true);
     }
 
-    public void ResetBall(Color color)
+    public void Reset(Color color)
     {
         ToggleGravity(false);
         SetPosition();

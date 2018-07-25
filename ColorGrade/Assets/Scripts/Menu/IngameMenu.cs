@@ -4,6 +4,13 @@ public class IngameMenu : Menu
 {
     public void Resume()
     {
-        Debug.LogError("noch nicht implementiert");
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
+    }
+
+    public override void BackToMainMenu()
+    {
+        Time.timeScale = 1;
+        base.BackToMainMenu();
     }
 }

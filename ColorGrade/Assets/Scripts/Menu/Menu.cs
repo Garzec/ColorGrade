@@ -13,7 +13,7 @@ public abstract class Menu : MonoBehaviour
         LoadScene("Ingame");
     }
 
-    public void BackToMainMenu()
+    public virtual void BackToMainMenu()
     {
         LoadScene("MainMenu");
     }
