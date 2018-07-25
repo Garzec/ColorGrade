@@ -52,18 +52,24 @@ public class Observer : MonoBehaviour
         if (currentRouletteColor == currentBallColor)
         {
             // weiter
+
+            Debug.LogError("noch nicht implementiert");
         }
         else
         {
             // verloren
+
+            Debug.LogError("noch nicht implementiert");
         }
     }
 
     private Color[] GetRouletteColors(int currentLevel)
     {
+        Debug.LogError("Abfrage mal testen");
+
         return colors
-            .Select(x => x.Value)
             .Where(x => x.Key <= currentLevel)
+            .Select(x => x.Value)
             .ToArray();
     }
 

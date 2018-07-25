@@ -33,13 +33,15 @@ public class Roulette : MonoBehaviour
 
     public void StartRotating(int currentLevel, Color[] colors)
     {
-        if (currentLevel % 10 == 0)
+        int lastDigit = currentLevel % 10;
+
+        if (lastDigit == 0)
         {
             currentRotationSpeed = initialRotationSpeed;
         }
         else
         {
-            currentRotationSpeed += currentLevel;
+            currentRotationSpeed += lastDigit;
         }
 
         SetColors(colors);
@@ -61,11 +63,13 @@ public class Roulette : MonoBehaviour
 
     private void SetColors(Color[] colors)
     {
-        // ...
+        Debug.LogError("noch nicht implementiert");
     }
 
     private Color GetCurrentColor()
     {
-        // ...
+        Debug.LogError("noch nicht implementiert");
+
+        return Color.red;
     }
 }
