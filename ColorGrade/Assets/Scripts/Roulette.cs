@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Roulette : MonoBehaviour
 {
@@ -80,10 +81,8 @@ public class Roulette : MonoBehaviour
 
     private Color GetCurrentColor()
     {
-        Debug.LogError("noch nicht implementiert");
-
-        // currentColors
-
-        return Color.red;
+        float currentRotation = transform.eulerAngles.z;
+        RouletteColor rouletteColor = currentColors.Where(x => x.ColorRangeMin < currentRotation && x.ColorRangeMax >= currentRotation).First();
+        return rouletteColor.CurrentColor;
     }
 }
