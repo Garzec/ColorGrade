@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Roulette : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Roulette : MonoBehaviour
 
     private float initialRotationSpeed = 10;
     private float currentRotationSpeed;
+
+    private List<RouletteColor> currentColors = new List<RouletteColor>();
 
     private void Start()
     {
@@ -63,12 +66,23 @@ public class Roulette : MonoBehaviour
 
     private void SetColors(Color[] colors)
     {
+        currentColors.Clear();
+
+        for (int i = 0; i < colors.Length; i++)
+        {
+            Color newColor = colors[i];
+            RouletteColor newRouletteColor = new RouletteColor(i, newColor, colors.Length);
+            currentColors.Add(newRouletteColor);
+        }
+
         Debug.LogError("noch nicht implementiert");
     }
 
     private Color GetCurrentColor()
     {
         Debug.LogError("noch nicht implementiert");
+
+        // currentColors
 
         return Color.red;
     }
