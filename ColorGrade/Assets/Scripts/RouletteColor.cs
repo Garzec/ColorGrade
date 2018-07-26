@@ -5,16 +5,16 @@ public class RouletteColor
     public RouletteColor(int colorIndex, Color color, int maxColors)
     {
         float step = 360 / maxColors;
-        colorRangeMin = step * colorIndex;
-        colorRangeMax = step * (colorIndex + 1);
+        rangeMin = step * colorIndex;
+        rangeMax = step * (colorIndex + 1);
         currentColor = color;
     }
 
-    private float colorRangeMin;
-    public float ColorRangeMin { get { return colorRangeMin; } }
+    private float rangeMin;
+    public float RangeMin { get { return rangeMin; } }
 
-    private float colorRangeMax;
-    public float ColorRangeMax { get { return colorRangeMax; } }
+    private float rangeMax;
+    public float RangeMax { get { return rangeMax; } }
 
     private Color currentColor;
     public Color CurrentColor { get { return currentColor; } }

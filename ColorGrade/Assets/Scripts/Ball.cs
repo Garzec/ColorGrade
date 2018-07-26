@@ -17,12 +17,12 @@ public class Ball : MonoBehaviour
 
     public void Drop()
     {
-        ToggleGravity(true);
+        ToggleRigidbody(true);
     }
 
     public void Reset(Color color)
     {
-        ToggleGravity(false);
+        ToggleRigidbody(false);
         SetPosition();
         ChangeColor(color);
     }
@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
         transform.position = initialPosition;
     }
 
-    private void ToggleGravity(bool isActive)
+    private void ToggleRigidbody(bool isActive)
     {
         rigid.isKinematic = !isActive;
     }

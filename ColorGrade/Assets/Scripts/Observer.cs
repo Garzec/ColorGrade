@@ -24,17 +24,17 @@ public class Observer : MonoBehaviour
 
     private void Start()
     {
-        colors.Add(-4, new Color(255, 51, 51)); // rot
-        colors.Add(-3, new Color(51, 173, 255)); // blau
-        colors.Add(-2, new Color(77, 255, 77)); // grün
-        colors.Add(-1, new Color(255, 255, 77)); // gelb
-        colors.Add(10, new Color(0, 0, 0)); // schwarz
-        colors.Add(20, new Color(184, 46, 138)); // violett
-        colors.Add(30, new Color(255, 153, 51)); // orange
-        colors.Add(40, new Color(0, 255, 255)); // türkis
-        colors.Add(50, new Color(0, 179, 0)); // dunkelgrün
-        colors.Add(60, new Color(255, 255, 255)); // weiß
-        colors.Add(70, new Color(51, 102, 153)); // dunkelblau
+        colors.Add(-4, new Color32(255, 51, 51, 255)); // rot
+        colors.Add(-3, new Color32(51, 173, 255, 255)); // blau
+        colors.Add(-2, new Color32(77, 255, 77, 255)); // grün
+        colors.Add(-1, new Color32(255, 255, 77, 255)); // gelb
+        colors.Add(10, new Color32(0, 0, 0, 255)); // schwarz
+        colors.Add(20, new Color32(184, 46, 138, 255)); // violett
+        colors.Add(30, new Color32(255, 153, 51, 255)); // orange
+        colors.Add(40, new Color32(0, 255, 255, 255)); // türkis
+        colors.Add(50, new Color32(0, 179, 0, 255)); // dunkelgrün
+        colors.Add(60, new Color32(255, 255, 255, 255)); // weiß
+        colors.Add(70, new Color32(51, 102, 153, 255)); // dunkelblau
 
         StartNextLevel();
     }
