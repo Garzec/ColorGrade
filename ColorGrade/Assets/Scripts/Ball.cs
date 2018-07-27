@@ -35,6 +35,10 @@ public class Ball : MonoBehaviour
     private void ToggleRigidbody(bool isActive)
     {
         rigid.isKinematic = !isActive;
+        if (rigid.isKinematic)
+        {
+            rigid.velocity = Vector2.zero;
+        }
     }
 
     private void ChangeColor(Color color)

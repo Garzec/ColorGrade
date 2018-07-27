@@ -46,6 +46,7 @@ public class Observer : MonoBehaviour
         Color ballColor = GetBallColor(rouletteColors);
         currentBallColor = ballColor;
         ball.Reset(ballColor);
+        score.ChangeHighscore(currentLevel);
         roulette.StartRotating(currentLevel, rouletteColors);
         btnDrop.SetActive(true);
     }
@@ -61,7 +62,6 @@ public class Observer : MonoBehaviour
     {
         if (currentRouletteColor == currentBallColor)
         {
-            score.ChangeHighscore(currentLevel);
             StartNextLevel();
         }
         else

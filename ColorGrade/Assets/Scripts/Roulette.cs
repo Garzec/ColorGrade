@@ -10,12 +10,15 @@ public class Roulette : MonoBehaviour
     [SerializeField]
     private Observer observer;
 
+    [SerializeField]
+    private SpriteRenderer rend;
+
     private bool isRotating;
 
-    private float initialRotationSpeed = 10;
+    private float initialRotationSpeed = 20;
     private float currentRotationSpeed;
 
-    private List<RouletteColor> rouletteColors = new List<RouletteColor>();
+    private List<Color> currentColors = new List<Color>();
 
     private void Start()
     {
@@ -39,13 +42,13 @@ public class Roulette : MonoBehaviour
     {
         int lastDigit = currentLevel % 10;
 
-        if (lastDigit == 0)
+        if (lastDigit == 0 && currentLevel < 80)
         {
             currentRotationSpeed = initialRotationSpeed;
         }
         else
         {
-            currentRotationSpeed += lastDigit;
+            currentRotationSpeed += lastDigit * 2;
         }
 
         SetColors(colors);
@@ -67,24 +70,42 @@ public class Roulette : MonoBehaviour
 
     private void SetColors(Color[] colors)
     {
-        rouletteColors.Clear();
+        currentColors = colors.ToList();
 
-        for (int i = 0; i < colors.Length; i++)
-        {
-            Color newColor = colors[i];
-            RouletteColor newRouletteColor = new RouletteColor(i, newColor, colors.Length);
-            rouletteColors.Add(newRouletteColor);
-        }
-
-        Debug.LogError("noch nicht implementiert");
+        Texture2D circleTexture = GenerateCircleTexture(512);
+        Sprite circleSprite = Sprite.Create(circleTexture, new Rect(0, 0, circleTexture.width, circleTexture.height), new Vector2(0.5f, 0.5f), 512);
+        rend.sprite = circleSprite;
     }
 
     private Color GetCurrentColor()
     {
-        float currentRotation = transform.eulerAngles.z;
-        RouletteColor rouletteColor = rouletteColors
-                                            .Where(x => x.RangeMin < currentRotation && x.RangeMax >= currentRotation)
-                                            .First();
-        return rouletteColor.CurrentColor;
+        float currentRotation = transform.eulerAngles.z % 360;
+        float angleStep = 360 / currentColors.Count;
+        int colorIndex = (int)(currentRotation / angleStep);
+        return currentColors[colorIndex];
+    }
+
+    private Texture2D GenerateCircleTexture(int size)
+    {
+        Color[] pixels = new Color[size * size];
+        Vector2 center = new Vector2(size / 2, size / 2);
+        float anglePerColor = 360 / currentColors.Count;
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                Vector2 dir = new Vector2(x + 0.5f, y + 0.5f) - center;
+                float angle = -Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
+                angle = angle < 0 ? 360 + angle : angle;
+                int colorIndex = Mathf.Min((int)(angle / anglePerColor), currentColors.Count - 1);
+                pixels[x + y * size] = dir.magnitude < size * 0.5f ? currentColors[colorIndex] : Color.clear;
+            }
+        }
+
+        Texture2D tex = new Texture2D(size, size);
+        tex.SetPixels(pixels);
+        tex.Apply();
+        return tex;
     }
 }
