@@ -15,7 +15,7 @@ public class Roulette : MonoBehaviour
     private float initialRotationSpeed = 10;
     private float currentRotationSpeed;
 
-    private List<RouletteColor> currentColors = new List<RouletteColor>();
+    private List<RouletteColor> rouletteColors = new List<RouletteColor>();
 
     private void Start()
     {
@@ -67,13 +67,13 @@ public class Roulette : MonoBehaviour
 
     private void SetColors(Color[] colors)
     {
-        currentColors.Clear();
+        rouletteColors.Clear();
 
         for (int i = 0; i < colors.Length; i++)
         {
             Color newColor = colors[i];
             RouletteColor newRouletteColor = new RouletteColor(i, newColor, colors.Length);
-            currentColors.Add(newRouletteColor);
+            rouletteColors.Add(newRouletteColor);
         }
 
         Debug.LogError("noch nicht implementiert");
@@ -82,7 +82,9 @@ public class Roulette : MonoBehaviour
     private Color GetCurrentColor()
     {
         float currentRotation = transform.eulerAngles.z;
-        RouletteColor rouletteColor = currentColors.Where(x => x.RangeMin < currentRotation && x.RangeMax >= currentRotation).First();
+        RouletteColor rouletteColor = rouletteColors
+                                            .Where(x => x.RangeMin < currentRotation && x.RangeMax >= currentRotation)
+                                            .First();
         return rouletteColor.CurrentColor;
     }
 }
