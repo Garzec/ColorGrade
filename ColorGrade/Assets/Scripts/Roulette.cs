@@ -15,7 +15,7 @@ public class Roulette : MonoBehaviour
 
     private bool isRotating;
 
-    private float initialRotationSpeed = 20;
+    private float initialRotationSpeed = 30;
     private float currentRotationSpeed;
 
     private List<Color> currentColors = new List<Color>();
@@ -48,7 +48,7 @@ public class Roulette : MonoBehaviour
         }
         else
         {
-            currentRotationSpeed += lastDigit * 2;
+            currentRotationSpeed += lastDigit * 3;
         }
 
         SetColors(colors);
@@ -72,7 +72,7 @@ public class Roulette : MonoBehaviour
     {
         currentColors = colors.ToList();
 
-        Texture2D circleTexture = GenerateCircleTexture(512);
+        Texture2D circleTexture = GenerateCircleTexture(96);
         Sprite circleSprite = Sprite.Create(circleTexture, new Rect(0, 0, circleTexture.width, circleTexture.height), new Vector2(0.5f, 0.5f), 512);
         rend.sprite = circleSprite;
     }
