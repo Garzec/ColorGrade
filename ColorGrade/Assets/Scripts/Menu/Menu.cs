@@ -13,6 +13,11 @@ public abstract class Menu : MonoBehaviour
         LoadScene("Ingame");
     }
 
+    public void LoadHighscores()
+    {
+        LoadScene("Highscore");
+    }
+
     public virtual void BackToMainMenu()
     {
         LoadScene("MainMenu");

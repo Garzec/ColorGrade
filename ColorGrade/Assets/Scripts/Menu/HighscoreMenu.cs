@@ -20,7 +20,8 @@ public class HighscoreMenu : Menu
         {
             Text currentHighscoreText = highscoreTexts[i];
             int currentHighscoreValue = highscores[i];
-            currentHighscoreText.text = currentHighscoreValue.ToString();
+            int highScoreIndex = i + 1;
+            currentHighscoreText.text = highScoreIndex + ". " + currentHighscoreValue;
         }
     }
 

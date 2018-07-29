@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Observer : MonoBehaviour
+public class Observer : Menu
 {
     [SerializeField]
     private Roulette roulette;
@@ -33,7 +33,7 @@ public class Observer : MonoBehaviour
         colors.Add(30, new Color32(255, 153, 51, 255)); // orange
         colors.Add(40, new Color32(0, 255, 255, 255)); // türkis
         colors.Add(50, new Color32(0, 179, 0, 255)); // dunkelgrün
-        colors.Add(60, new Color32(255, 255, 255, 255)); // weiß
+        colors.Add(60, new Color32(200, 200, 200, 255)); // grau
         colors.Add(70, new Color32(51, 102, 153, 255)); // dunkelblau
 
         StartNextLevel();
@@ -67,7 +67,7 @@ public class Observer : MonoBehaviour
         else
         {
             score.SaveScore();
-            SceneManager.LoadScene("Highscore");
+            LoadHighscores();
         }
     }
 

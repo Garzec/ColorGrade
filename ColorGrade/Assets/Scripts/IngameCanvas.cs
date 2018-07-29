@@ -22,5 +22,6 @@ public class IngameCanvas : MonoBehaviour
     {
         Time.timeScale = 0;
         ingameMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

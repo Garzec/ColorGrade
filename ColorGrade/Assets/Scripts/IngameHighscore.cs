@@ -4,20 +4,20 @@ using UnityEngine.UI;
 public class IngameHighscore : MonoBehaviour
 {
     [SerializeField]
-    private Text txt;
+    private Text[] highscoreTexts;
 
     private void Start()
     {
-        SetHighscore();
+        SetHighscores();
     }
 
-    private void SetHighscore()
+    private void SetHighscores()
     {
-        txt.text = GetHighscore().ToString();
-    }
-
-    private int GetHighscore()
-    {
-        return PlayerPrefs.GetInt("Highscore1");
+        for (int i = 0; i < highscoreTexts.Length; i++)
+        {
+            Text currentHighscoreText = highscoreTexts[i];
+            int highScoreIndex = i + 1;
+            currentHighscoreText.text = highScoreIndex + ". " + PlayerPrefs.GetInt("Highscore" + highScoreIndex);
+        }
     }
 }

@@ -2,9 +2,13 @@
 
 public class IngameMenu : Menu
 {
+    [SerializeField]
+    GameObject ingameCanvas;
+
     public void Resume()
     {
         Time.timeScale = 1;
+        ingameCanvas.SetActive(true);
         gameObject.SetActive(false);
     }
 
